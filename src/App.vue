@@ -31,7 +31,7 @@
           <Toast v-if="exist" />
         </div>
       </div>
-      <TransitionGroup name="saved" tag="ul" v-if="savedUsers">
+      <TransitionGroup name="saved" tag="ul" v-if="savedUsers.length">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           <div class="card" v-for="saved in savedUsers" :key="saved.id">
             <div class="grid grid-cols-2">
@@ -156,4 +156,3 @@ export default {
   },
 };
 </script>
-
