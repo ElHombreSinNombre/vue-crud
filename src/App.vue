@@ -1,47 +1,41 @@
 <template>
-  <div>
-    <div class="center">
-      <div class="max-w-md mx-auto">
-        <div class="card">
-          <div class="fa-xl items-center my-3 flex justify-center">
-            <Search />
-          </div>
-          <Input
-            placeholder="Search user..."
-            v-model="search"
-            :value="search"
-          />
-          <TransitionGroup
-            name="list"
-            tag="ul"
-            v-if="allUsers"
-            class="border rounded mb-2"
+  <main>
+    <section class="center">
+      <article class="max-w-md mx-auto card">
+        <article class="fa-xl items-center my-3 flex justify-center">
+          <Search />
+        </article>
+        <Input placeholder="Search user..." v-model="search" :value="search" />
+        <TransitionGroup
+          name="list"
+          tag="ul"
+          v-if="allUsers"
+          class="border rounded mb-2"
+        >
+          <li
+            class="cursor-pointer p-2 hover:bg-black hover:text-white border transition duration-500 flex"
+            title="Click to add"
+            v-for="user in allUsers"
+            :value="user.name"
+            :key="user.id"
+            @click="add(user)"
           >
-            <li
-              class="cursor-pointer p-2 hover:bg-black hover:text-white border transition duration-500 flex"
-              title="Click to add"
-              v-for="user in allUsers"
-              :value="user.name"
-              :key="user.id"
-              @click="add(user)"
-            >
-              <span>{{ user.name }}</span> <SaveFloppyDisk class="ml-auto" />
-            </li>
-          </TransitionGroup>
-          <Toast v-if="exist" />
-        </div>
-      </div>
+            <span>{{ user.name }}</span> <SaveFloppyDisk class="ml-auto" />
+          </li>
+        </TransitionGroup>
+        <Toast v-if="exist" />
+      </article>
       <TransitionGroup name="saved" tag="ul" v-if="savedUsers.length">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          <div class="card" v-for="saved in savedUsers" :key="saved.id">
-            <div class="grid grid-cols-2">
-              <div>
+        <article class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <article class="card" v-for="saved in savedUsers" :key="saved.id">
+            <article class="grid grid-cols-2">
+              <article class="flex flex-col">
                 <p class="font-bold">{{ saved.name }}</p>
                 <p>{{ saved.email }}</p>
                 <p>{{ saved.phone }}</p>
-              </div>
-              <div class="flex items-center justify-end gap-2">
-                <div
+              </article>
+              <article class="flex items-center justify-end gap-2">
+                <article
                   class="hover:text-red-700 transition duration-500"
                   title="Remove user"
                 >
@@ -49,8 +43,8 @@
                     @click.native="remove(saved)"
                     class="cursor-pointer"
                   />
-                </div>
-                <div
+                </article>
+                <article
                   class="hover:text-blue-700 transition duration-500"
                   title="Edit user"
                 >
@@ -58,17 +52,17 @@
                     class="cursor-pointer"
                     @click.native="edit(saved)"
                   />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                </article>
+              </article>
+            </article>
+          </article>
+        </article>
       </TransitionGroup>
-    </div>
+    </section>
     <Overlay v-if="opened">
       <Form :user="selectedUser" @submit="close" />
     </Overlay>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">

@@ -1,23 +1,23 @@
 <template>
-  <div class="center fixed inset-0 z-10">
-    <div class="card">
-      <div class="mb-4">
+  <section class="center fixed inset-0 z-10">
+    <article class="card">
+      <article class="mb-4">
         <label for="name" class="block mb-2 font-bold">Name</label>
         <Input
           :value="user.name"
           :placeholder="user ? 'Edit name' : 'New name'"
           v-model="user.name"
         />
-      </div>
-      <div class="mb-4">
+      </article>
+      <article class="mb-4">
         <label for="phone" class="block mb-2 font-bold">Phone</label>
         <Input
           :value="user.phone"
           v-model="user.phone"
           :placeholder="user ? 'Edit phone' : 'New phone'"
         />
-      </div>
-      <div class="mb-4">
+      </article>
+      <article class="mb-4">
         <label for="email" class="block mb-2 font-bold">Email</label>
         <Input
           type="email"
@@ -25,10 +25,10 @@
           v-model="user.email"
           :placeholder="user ? 'Edit email' : 'New email'"
         />
-      </div>
+      </article>
       <Button text="Done" @submit="submit" :disabled="!user.name" />
-    </div>
-  </div>
+    </article>
+  </section>
 </template>
 
 <script lang="ts">
