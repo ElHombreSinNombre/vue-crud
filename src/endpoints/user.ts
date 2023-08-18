@@ -4,7 +4,7 @@ export class User {
       const res = await fetch(
         `https://jsonplaceholder.typicode.com/users?name_like=${value}`
       );
-      if (res.status === 200) {
+      if (res.ok) {
         return res.json();
       }
     } catch (e) {
