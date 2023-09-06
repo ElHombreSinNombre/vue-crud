@@ -1,4 +1,4 @@
-import { UserModel } from "./../models/User";
+import { UserModel } from '@/src/models/User'
 
 const userParsers = (data: any): UserModel[] => {
   const user = data.map((user: any) => {
@@ -6,10 +6,10 @@ const userParsers = (data: any): UserModel[] => {
       id: user.id,
       name: user.name,
       email: user.email,
-      phone: user.phone,
-    };
-  });
-  return user;
-};
+      phone: user.phone
+    }
+  })
+  return user
+}
 
-export default userParsers;
+export default userParsers

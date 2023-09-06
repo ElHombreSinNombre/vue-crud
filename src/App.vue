@@ -66,87 +66,95 @@
 </template>
 
 <script lang="ts">
-import { computed, ref, watch } from "vue";
-import { useUserStore } from "./store/user";
-import Form from "./components/Form.vue";
-import { UserModel } from "./models/User";
-import { DeleteCircle, EditPencil, Search, SaveFloppyDisk } from "@iconoir/vue";
-import Input from "./components/Input.vue";
-import Toast from "./components/Toast.vue";
-import Overlay from "./components/Overlay.vue";
-
-export default {
-  name: "search",
-  components: {
+  import { computed, ref, watch } from 'vue'
+  import { useUserStore } from './store/user'
+  import Form from '@/components/Form.vue'
+  import { UserModel } from './models/User'
+  import debounce from '@/src/utils/debounce'
+  import {
     DeleteCircle,
     EditPencil,
-    Form,
     Search,
-    SaveFloppyDisk,
-    Input,
-    Toast,
-    Overlay,
-  },
-  setup() {
-    const store = useUserStore();
-    const search = ref<string | undefined>(undefined);
-    const opened = ref<boolean>(false);
-    const exist = ref<boolean>(false);
-    const allUsers = ref<UserModel[] | undefined>(undefined);
-    const selectedUser = ref<UserModel | undefined>(undefined);
-    watch(search, () => {
-      setTimeout(async () => {
-        if (search.value === "") {
-          allUsers.value = undefined;
-        } else {
-          allUsers.value = await store.fetchUsers(search.value);
-        }
-      }, 300);
-    });
-    const savedUsers = computed(() => {
-      return store.getUser;
-    });
-    function add(user: UserModel) {
-      const hasUser = savedUsers.value.find(
-        (user: UserModel) => user.id === user.id
-      );
-      if (!hasUser) {
-        search.value = "";
-        allUsers.value = undefined;
-        exist.value = false;
-        store.addUser(user);
-      } else {
-        exist.value = true;
-      }
-    }
-    function edit(user: UserModel) {
-      opened.value = true;
-      selectedUser.value = user;
-    }
-    function remove(user: UserModel) {
-      store.removeUser(user);
-    }
-    function close() {
-      opened.value = false;
-    }
-    return {
-      Search,
+    SaveFloppyDisk
+  } from '@iconoir/vue'
+  import Input from '@/components/Input.vue'
+  import Toast from '@/components/Toast.vue'
+  import Overlay from '@/components/Overlay.vue'
+
+  export default {
+    name: 'search',
+    components: {
       DeleteCircle,
       EditPencil,
-      SaveFloppyDisk,
-      Overlay,
       Form,
-      add,
-      remove,
-      edit,
-      search,
-      allUsers,
-      savedUsers,
-      exist,
-      selectedUser,
-      close,
-      opened,
-    };
-  },
-};
+      Search,
+      SaveFloppyDisk,
+      Input,
+      Toast,
+      Overlay
+    },
+    setup() {
+      const store = useUserStore()
+      const search = ref<string | undefined>(undefined)
+      const opened = ref<boolean>(false)
+      const exist = ref<boolean>(false)
+      const allUsers = ref<UserModel[] | undefined>(undefined)
+      const selectedUser = ref<UserModel | undefined>(undefined)
+      watch(search, () => {
+        const debouncedFetch = debounce(async () => {
+          if (search.value === '') {
+            allUsers.value = undefined
+          } else {
+            allUsers.value = await store.fetchUsers(search.value)
+          }
+        }, 300)
+        debouncedFetch()
+      })
+      const savedUsers = computed(() => {
+        return store.getUser
+      })
+      function add(user: UserModel) {
+        const hasUser = savedUsers.value.find(
+          (user: UserModel) => user.id === user.id
+        )
+        if (!hasUser) {
+          search.value = ''
+          allUsers.value = undefined
+          exist.value = false
+          store.addUser(user)
+        } else {
+          exist.value = true
+        }
+      }
+      function edit(user: UserModel) {
+        opened.value = true
+        selectedUser.value = user
+      }
+      function remove(user: UserModel) {
+        store.removeUser(user)
+      }
+      function close() {
+        opened.value = false
+      }
+      return {
+        Search,
+        DeleteCircle,
+        EditPencil,
+        SaveFloppyDisk,
+        Overlay,
+        Form,
+        add,
+        remove,
+        edit,
+        search,
+        allUsers,
+        savedUsers,
+        exist,
+        selectedUser,
+        debounce,
+        close,
+        opened
+      }
+    }
+  }
 </script>

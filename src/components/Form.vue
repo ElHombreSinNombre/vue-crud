@@ -32,32 +32,32 @@
 </template>
 
 <script lang="ts">
-import { UserModel } from "../models/User";
-import { useUserStore } from "../store/user";
-import Input from "../components/Input.vue";
-import Button from "../components/Button.vue";
+  import { UserModel } from '@/src/models/User'
+  import { useUserStore } from '@/src/store/user'
+  import Input from '@/components/Input.vue'
+  import Button from '@/components/Button.vue'
 
-export default {
-  name: "Form",
-  props: {
-    user: {
-      type: Object as () => UserModel,
-      default: null,
-    },
-  },
-  components: { Input, Button },
-  setup(props, { emit }) {
-    const store = useUserStore();
-    function submit() {
-      if (props.user.id) {
-        store.editUser(props.user);
-      } else {
-        store.addUser(props.user);
+  export default {
+    name: 'Form',
+    props: {
+      user: {
+        type: Object as () => UserModel,
+        default: null
       }
-      emit("submit");
-    }
+    },
+    components: { Input, Button },
+    setup(props, { emit }) {
+      const store = useUserStore()
+      function submit() {
+        if (props.user.id) {
+          store.editUser(props.user)
+        } else {
+          store.addUser(props.user)
+        }
+        emit('submit')
+      }
 
-    return { Input, user: props.user, submit };
-  },
-};
+      return { Input, user: props.user, submit }
+    }
+  }
 </script>

@@ -13,7 +13,7 @@ body {
 
 @layer base {
   .list {
-    transition: all 0.5s ease-in-out;
+    @apply transition-all duration-500 ease-in-out;
   }
 
   .list-enter,
@@ -84,4 +84,3 @@ body {
     @apply min-h-screen;
   }
 }
-
