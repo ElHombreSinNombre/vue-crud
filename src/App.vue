@@ -101,14 +101,13 @@
       const allUsers = ref<UserModel[] | undefined>(undefined)
       const selectedUser = ref<UserModel | undefined>(undefined)
       watch(search, () => {
-        const debouncedFetch = debounce(async () => {
+        debounce(async () => {
           if (search.value === '') {
             allUsers.value = undefined
           } else {
             allUsers.value = await store.fetchUsers(search.value)
           }
         }, 300)
-        debouncedFetch()
       })
       const savedUsers = computed(() => {
         return store.getUser
