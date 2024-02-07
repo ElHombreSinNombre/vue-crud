@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { User } from '@/src/endpoints/user'
-import { UserModel } from '@/src/models/User'
+import { UserModel } from '@/src/types/User'
 import userParsers from '@/src/parsers/user'
 
 export const useUserStore = defineStore('users', {

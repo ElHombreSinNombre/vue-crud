@@ -1,4 +1,4 @@
-import { UserModel } from '@/src/models/User'
+import { UserModel } from '@/src/types/User'
 
 const userParsers = (data: any): UserModel[] => {
   const user = data.map((user: any) => {

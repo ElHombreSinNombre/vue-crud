@@ -69,7 +69,7 @@
   import { computed, ref, watch } from 'vue'
   import { useUserStore } from './store/user'
   import Form from '@/components/Form.vue'
-  import { UserModel } from './models/User'
+  import { UserModel } from './types/User'
   import debounce from '@/src/utils/debounce'
   import {
     DeleteCircle,

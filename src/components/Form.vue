@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-  import { UserModel } from '@/src/models/User'
+  import { UserModel } from '@/src/types/User'
   import { useUserStore } from '@/src/store/user'
   import Input from '@/components/Input.vue'
   import Button from '@/components/Button.vue'
