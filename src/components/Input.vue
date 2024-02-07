@@ -1,7 +1,7 @@
 <template>
   <input
     :type="type"
-    :value="value"
+    :value="modelValue"
     @input="change($event)"
     class="input"
     :name="name"
@@ -14,7 +14,7 @@
 export default {
   name: "Input",
   props: {
-    value: { type: String, default: undefined },
+    modelValue: { type: String, default: undefined },
     type: { type: String, default: "text" },
     name: { type: String, default: undefined },
     placeholder: { type: String, default: undefined },

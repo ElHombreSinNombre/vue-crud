@@ -16,11 +16,10 @@
             class="cursor-pointer p-2 hover:bg-black hover:text-white border transition duration-500 flex"
             title="Click to add"
             v-for="user in allUsers"
-            :value="user.name"
             :key="user.id"
             @click="add(user)"
           >
-            <span>{{ user.name }}</span> <SaveFloppyDisk class="ml-auto" />
+            <span>{{ user.name }}</span> <FloppyDisk class="ml-auto" />
           </li>
         </TransitionGroup>
         <Toast v-if="exist" />
@@ -39,7 +38,7 @@
                   class="hover:text-red-700 transition duration-500"
                   title="Remove user"
                 >
-                  <DeleteCircle
+                  <XmarkCircle
                     @click.native="remove(saved)"
                     class="cursor-pointer"
                   />
@@ -72,10 +71,10 @@
   import { UserModel } from './types/User'
   import debounce from '@/src/utils/debounce'
   import {
-    DeleteCircle,
+    XmarkCircle,
     EditPencil,
     Search,
-    SaveFloppyDisk
+    FloppyDisk
   } from '@iconoir/vue'
   import Input from '@/components/Input.vue'
   import Toast from '@/components/Toast.vue'
@@ -84,11 +83,11 @@
   export default {
     name: 'search',
     components: {
-      DeleteCircle,
+      XmarkCircle,
       EditPencil,
       Form,
       Search,
-      SaveFloppyDisk,
+      FloppyDisk,
       Input,
       Toast,
       Overlay
@@ -115,8 +114,9 @@
       })
       function add(user: UserModel) {
         const hasUser = savedUsers.value.find(
-          (user: UserModel) => user.id === user.id
+          (savedUser: UserModel) => savedUser.id === user.id
         )
+        console.log(hasUser)
         if (!hasUser) {
           search.value = ''
           allUsers.value = undefined
@@ -138,9 +138,9 @@
       }
       return {
         Search,
-        DeleteCircle,
+        XmarkCircle,
         EditPencil,
-        SaveFloppyDisk,
+        FloppyDisk,
         Overlay,
         Form,
         add,
