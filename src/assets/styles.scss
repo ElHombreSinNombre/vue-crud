@@ -50,8 +50,7 @@ body {
     @apply justify-center;
     @apply w-full;
     @apply border;
-    @apply bg-indigo-500;
-    @apply border-indigo-500;
+    @apply bg-indigo-400;
     @apply text-white;
     @apply py-3;
     @apply px-4;
@@ -60,6 +59,9 @@ body {
     @apply transition;
     @apply duration-500;
     @apply ease-in-out;
+    &:hover {
+      @apply bg-indigo-500;
+    }
   }
 }
 
