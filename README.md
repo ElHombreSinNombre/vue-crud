@@ -6,8 +6,8 @@ A application demonstrating **C**reate, **R**ead, **U**pdate, and **D**elete ope
 
 * **[Vue 3](https://vuejs.org/)** 
 * **[Vite](https://vitejs.dev/)** 
-* **[Pinia](https://pinia.vuejs.org/)** e.
-* **[Tailwind CSS](https://tailwindcss.com/)** -
+* **[Pinia](https://pinia.vuejs.org/)**
+* **[Tailwind CSS](https://tailwindcss.com/)**
 
 ## How to deploy
 
