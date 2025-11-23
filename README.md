@@ -1,14 +1,19 @@
 # CRUD
 
-Technologies
+A application demonstrating **C**reate, **R**ead, **U**pdate, and **D**elete operations using Vue
 
-- **[Vite](https://vitejs.dev/)**
-- **[Tailwind](https://tailwindcss.com/)**
-- **[Vue 3](https://vuejs.org/)**
-- **[Pinia](https://pinia.vuejs.org/)**
-- **[JSONPlaceholder](https://jsonplaceholder.typicode.com/users)**
+## Technologies
 
-Run
+* **[Vue 3](https://vuejs.org/)** 
+* **[Vite](https://vitejs.dev/)** 
+* **[Pinia](https://pinia.vuejs.org/)** e.
+* **[Tailwind CSS](https://tailwindcss.com/)** -
 
-- _npm install_
-- _npm run dev_
+## How to deploy
+
+```bash
+npm install
+npm run dev
+```
+
+The application will be accessible at the URL provided by Vite (usually `http://localhost:5173`).
